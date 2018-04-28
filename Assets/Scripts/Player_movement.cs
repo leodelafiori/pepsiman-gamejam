@@ -46,7 +46,6 @@ public class Player_movement : MonoBehaviour {
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            // transform.Translate(0, 0, velocidade_pulo);
         }
 
     }
