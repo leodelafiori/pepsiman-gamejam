@@ -21,7 +21,7 @@ public class Player_movement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
         
         // Para a direita
@@ -37,7 +37,6 @@ public class Player_movement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Translate(0, -velocidade, 0);
-
         }
 
 
