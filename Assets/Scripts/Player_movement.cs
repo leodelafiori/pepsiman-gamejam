@@ -26,7 +26,7 @@ public class Player_movement : MonoBehaviour {
         
         // Para a direita
 
-        if (Input.GetKey(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.A)) {
                         
             transform.Translate(0, velocidade, 0);
 
@@ -34,7 +34,7 @@ public class Player_movement : MonoBehaviour {
 
         // Para Esquerda
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Translate(0, -velocidade, 0);
 
