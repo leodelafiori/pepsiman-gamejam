@@ -9,7 +9,7 @@ public class Player_movement : MonoBehaviour {
     public float jumpForce;
     public SphereCollider col;
     public float velocidade;
-    
+       
  
 
 	// Use this for initialization
@@ -27,7 +27,7 @@ public class Player_movement : MonoBehaviour {
         // Para a direita
 
         if (Input.GetKey(KeyCode.A)) {
-
+                        
             transform.Translate(0, velocidade, 0);
 
         }
@@ -36,7 +36,6 @@ public class Player_movement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.D))
         {
-
             transform.Translate(0, -velocidade, 0);
 
         }
