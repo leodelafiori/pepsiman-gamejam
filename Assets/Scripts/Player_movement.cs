@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Player_movement : MonoBehaviour {
 
+    public Rigidbody rb;
+    public LayerMask groundLayers;
+    public float jumpForce;
+    public SphereCollider col;
     public float velocidade;
-    public float velocidade_pulo;
+    
  
 
 	// Use this for initialization
 	void Start () {
-       
+
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<SphereCollider>();
+        
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-	
+
+        
         // Para a direita
 
         if (Input.GetKey(KeyCode.A)) {
@@ -33,10 +41,22 @@ public class Player_movement : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-           // transform.Translate(0, 0, velocidade_pulo);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            // transform.Translate(0, 0, velocidade_pulo);
         }
 
     }
+
+    private bool IsGrounded()
+        {
+        return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x,
+            col.bounds.min.y, col.bounds.center.z), col.radius * .9f, groundLayers);
+             }
+
 }
+
+
