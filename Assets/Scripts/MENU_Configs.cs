@@ -9,4 +9,5 @@ public class MENU_Configs : MonoBehaviour {
         Time.timeScale = 1f;
         Application.LoadLevel(nome_cena);
     }
+
 }

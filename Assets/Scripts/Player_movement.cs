@@ -1,28 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_movement : MonoBehaviour {
 
-    public Rigidbody rb;
 
+    //Declarando variaveis mobile
+    public Swipe swipeControls;
+
+    public Rigidbody rb;
     // Variaveis para pulo do jogador
     public LayerMask groundlayers;
     public float jumpForce;
     public SphereCollider col; 
     public float velocidade;
     public float velocidade_const;
+    public Button pulo;
+
 
     // Use this for initialization
     void Start () {
 
-        rb = GetComponent<Rigidbody>();
+        //pegando o botao pra click com pulo em android
+        Button click = pulo.GetComponent<Button>();
+        pulo.onClick.AddListener(botao_click);
+        rb = GetComponent<Rigidbody>(); 
         col = GetComponent<SphereCollider>();
         
 	}
 
     // Update is called once per frame
     void Update() {
+ 
 
         //Movimentos continuos do player
         transform.Translate(velocidade_const * Time.deltaTime, 0, 0);
@@ -30,16 +40,15 @@ public class Player_movement : MonoBehaviour {
 
         // Para a direita
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || swipeControls.swipeLeft)
         {
             transform.Translate(0, -velocidade, 0);
         }
 
 
-
         // Para Esquerda
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || swipeControls.swipeRight)
         {
             transform.Translate(0, velocidade, 0);
         }
@@ -51,6 +60,15 @@ public class Player_movement : MonoBehaviour {
 
         }
 
+
+    }
+
+    private void botao_click()
+    {
+        if (IsGrounded())
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     private bool IsGrounded()

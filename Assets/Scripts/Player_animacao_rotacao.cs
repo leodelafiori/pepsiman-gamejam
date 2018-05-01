@@ -8,9 +8,11 @@ using UnityEngine;
 public class Player_animacao_rotacao : MonoBehaviour {
 
     public float player_rotacao;
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         transform.Rotate( 0, -player_rotacao, 0);
+
 	}
 }
