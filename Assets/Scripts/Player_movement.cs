@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Player_movement : MonoBehaviour {
 
+    //teste
+    int contador;
 
     //Declarando variaveis mobile
     public Swipe swipeControls;
@@ -42,7 +44,7 @@ public class Player_movement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.A) || swipeControls.swipeLeft)
         {
-            transform.Translate(0, -velocidade, 0);
+            StartCoroutine("Delay_Animacao_esquerda");
         }
 
 
@@ -50,14 +52,40 @@ public class Player_movement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.D) || swipeControls.swipeRight)
         {
-            transform.Translate(0, velocidade, 0);
+            StartCoroutine("Delay_Animacao_direita");
         }
 
 
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
+
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
+        }
+
+
+    }
+
+    IEnumerator Delay_Animacao_esquerda()
+    {
+
+        for(contador = 0; contador < 6; contador++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            transform.Translate(0, -0.5f, 0);
+        }
+
+
+    }
+
+
+    IEnumerator Delay_Animacao_direita()
+    {
+
+        for (contador = 0; contador < 6; contador++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            transform.Translate(0, 0.5f, 0);
         }
 
 
