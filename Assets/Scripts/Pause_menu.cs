@@ -9,8 +9,16 @@ public class Pause_menu : MonoBehaviour {
     public GameObject pause_menu_UI;
     public GameObject score_menu_UI;
 
+
+    private void Start()
+    {
+        Pause();
+    }
+
     // Update is called once per frame
     void Update() {
+
+  
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Game_paused)

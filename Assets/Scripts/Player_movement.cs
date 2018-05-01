@@ -18,15 +18,11 @@ public class Player_movement : MonoBehaviour {
     public SphereCollider col; 
     public float velocidade;
     public float velocidade_const;
-    public Button pulo;
+
 
 
     // Use this for initialization
     void Start () {
-
-        //pegando o botao pra click com pulo em android
-        Button click = pulo.GetComponent<Button>();
-        pulo.onClick.AddListener(botao_click);
         rb = GetComponent<Rigidbody>(); 
         col = GetComponent<SphereCollider>();
         
@@ -56,7 +52,7 @@ public class Player_movement : MonoBehaviour {
         }
 
 
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space) || IsGrounded() && swipeControls.swipeUp)
         {
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -89,14 +85,6 @@ public class Player_movement : MonoBehaviour {
         }
 
 
-    }
-
-    private void botao_click()
-    {
-        if (IsGrounded())
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
     }
 
     private bool IsGrounded()
